@@ -7,7 +7,11 @@ import tseslint from 'typescript-eslint';
 export default tseslint.config(
   { ignores: ['dist'] },
   {
-    extends: [js.configs.recommended, ...tseslint.configs.recommended],
+    extends: [
+      js.configs.recommended,
+      ...tseslint.configs.recommended,
+      (await import('eslint-config-prettier')).default,
+    ],
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
       ecmaVersion: 2020,
@@ -23,6 +27,15 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
+    },
+  },
+  {
+    files: ['**/*.{ts,tsx,js,jsx}'],
+    plugins: {
+      prettier: await import('eslint-plugin-prettier'),
+    },
+    rules: {
+      'prettier/prettier': 'warn', // or "error"
     },
   }
 );
