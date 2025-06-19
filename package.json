@@ -13,7 +13,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "prepare": "husky",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "check-format": "prettier --check ."
   },
   "dependencies": {
     "react": "^19.1.0",
