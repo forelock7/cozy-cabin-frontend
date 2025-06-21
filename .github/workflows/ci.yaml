@@ -12,33 +12,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
+      - uses: npm/action-setup@v2
         with:
           version: 8
-      - run: pnpm install
-      - run: pnpm check-format
+      - run: npm install
+      - run: npm check-format
 
   lint:
     name: Run ESLint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
+      - uses: npm/action-setup@v2
         with:
           version: 8
-      - run: pnpm install
-      - run: pnpm lint
+      - run: npm install
+      - run: npm lint
 
   test:
     name: Run Unit/Component Tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
+      - uses: npm/action-setup@v2
         with:
           version: 8
-      - run: pnpm install
-      - run: pnpm test
+      - run: npm install
+      - run: npm test
 
   build:
     name: Build Docker image
@@ -46,8 +46,8 @@ jobs:
     needs: [format, lint, test]
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
+      - uses: npm/action-setup@v2
         with:
           version: 8
-      - run: pnpm install
+      - run: npm install
       - run: docker build -t cozy-cabin-frontend .

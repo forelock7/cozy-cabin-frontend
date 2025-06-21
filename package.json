@@ -1,8 +1,7 @@
 {
   "name": "cozy-cabin-frontend",
   "engine": {
-    "node": ">=22.14.0",
-    "pnpm": ">=10.12.1"
+    "node": ">=24.2.0"
   },
   "private": true,
   "version": "0.0.0",
