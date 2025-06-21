@@ -1,8 +1,7 @@
 {
   "name": "cozy-cabin-frontend",
   "engine": {
-    "node": ">=22.14.0",
-    "pnpm": ">=10.12.1"
+    "node": ">=24.2.0"
   },
   "private": true,
   "version": "0.0.0",
@@ -14,7 +13,8 @@
     "preview": "vite preview",
     "prepare": "husky",
     "format": "prettier --write .",
-    "check-format": "prettier --check ."
+    "check-format": "prettier --check .",
+    "test": "echo 'test'"
   },
   "dependencies": {
     "react": "^19.1.0",
