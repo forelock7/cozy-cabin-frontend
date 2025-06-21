@@ -12,10 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 24.2.0
-      - run: npm ci
+      - uses: ./.github/actions/setup-node-and-install
       - run: npm run check-format
 
   lint:
@@ -23,10 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 24.2.0
-      - run: npm ci
+      - uses: ./.github/actions/setup-node-and-install
       - run: npm run lint
 
   test:
@@ -34,10 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 24.2.0
-      - run: npm ci
+      - uses: ./.github/actions/setup-node-and-install
       - run: npm test
 
   build:
@@ -46,8 +37,5 @@ jobs:
     needs: [format, lint, test]
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 24.2.0
-      - run: npm ci
+      - uses: ./.github/actions/setup-node-and-install
       - run: docker build -t cozy-cabin-frontend .
