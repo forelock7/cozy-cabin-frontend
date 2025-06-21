@@ -12,32 +12,32 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: npm/action-setup@v2
+      - uses: actions/setup-node@v4
         with:
-          version: 8
-      - run: npm install
-      - run: npm check-format
+          node-version: 24.2.0
+      - run: npm ci
+      - run: npm run check-format
 
   lint:
     name: Run ESLint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: npm/action-setup@v2
+      - uses: actions/setup-node@v4
         with:
-          version: 8
-      - run: npm install
-      - run: npm lint
+          node-version: 24.2.0
+      - run: npm ci
+      - run: npm run lint
 
   test:
     name: Run Unit/Component Tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: npm/action-setup@v2
+      - uses: actions/setup-node@v4
         with:
-          version: 8
-      - run: npm install
+          node-version: 24.2.0
+      - run: npm ci
       - run: npm test
 
   build:
@@ -46,8 +46,8 @@ jobs:
     needs: [format, lint, test]
     steps:
       - uses: actions/checkout@v3
-      - uses: npm/action-setup@v2
+      - uses: actions/setup-node@v4
         with:
-          version: 8
-      - run: npm install
+          node-version: 24.2.0
+      - run: npm ci
       - run: docker build -t cozy-cabin-frontend .
