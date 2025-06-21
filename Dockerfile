@@ -1,4 +1,4 @@
-FROM node:v22.14.0
+FROM node:22.14.0-alpine
 WORKDIR /app
 COPY . .
 RUN pnpm install && pnpm run build
