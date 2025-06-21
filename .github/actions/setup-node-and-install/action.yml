@@ -1,5 +1,6 @@
 name: Setup Node and Install
-description: Setup Node.js and install dependencies with npm
+description: 'Sets up Node.js 24.2.0 and runs npm ci'
+
 runs:
   using: 'composite'
   steps:
@@ -8,3 +9,4 @@ runs:
         node-version: 24.2.0
 
     - run: npm ci
+      shell: bash
