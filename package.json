@@ -14,7 +14,8 @@
     "preview": "vite preview",
     "prepare": "husky",
     "format": "prettier --write .",
-    "check-format": "prettier --check ."
+    "check-format": "prettier --check .",
+    "test": "echo 'test'"
   },
   "dependencies": {
     "react": "^19.1.0",

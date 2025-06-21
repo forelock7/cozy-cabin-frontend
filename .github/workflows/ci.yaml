@@ -7,23 +7,47 @@ on:
     branches: [main]
 
 jobs:
-  lint-and-format:
+  format:
+    name: Check Prettier formatting
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Set up Node and pnpm
-        uses: pnpm/action-setup@v2
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
         with:
           version: 8
+      - run: pnpm install
+      - run: pnpm check-format
 
-      - name: Install dependencies
-        run: pnpm install
+  lint:
+    name: Run ESLint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - run: pnpm install
+      - run: pnpm lint
 
-      - name: Run ESLint
-        run: pnpm lint
+  test:
+    name: Run Unit/Component Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - run: pnpm install
+      - run: pnpm test
 
-      - name: Run Prettier check
-        run: pnpm check-format
+  build:
+    name: Build Docker image
+    runs-on: ubuntu-latest
+    needs: [format, lint, test]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - run: pnpm install
+      - run: docker build -t cozy-cabin-frontend .
